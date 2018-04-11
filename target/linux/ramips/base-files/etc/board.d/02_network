@@ -125,7 +125,7 @@ ramips_setup_interfaces()
 	zbt-wg3526-32M|\
 	zbt-wr8305rt)
 		ucidef_add_switch "switch0" \
-			"0:lan" "1:lan" "2:lan" "3:lan" "4:wan" "6@eth0"
+			"0:wan" "1:lan" "2:lan" "3:lan" "4:lan" "6@eth0"
 		;;
 	alfa-network,awusfree1|\
 	cs-qr10|\

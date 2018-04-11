@@ -1,0 +1,28 @@
+
+config 4G 4G
+	option apn '3gnet'
+	option user 'carl'
+	option password '1234'
+	option enable '1'
+	option auth '0'
+
+config 4G 4G1
+	option apn '3gnet'
+	option user 'carl'
+	option password '1234'
+	option enable '1'
+	option auth '0'
+
+config 4G 4G2
+	option apn '3gnet'
+	option user 'carl'
+	option password '1234'
+	option enable '1'
+	option auth '0'
+
+config 4G 4G3
+	option apn '3gnet'
+	option user 'carl'
+	option password '1234'
+	option enable '1'
+	option auth '0'

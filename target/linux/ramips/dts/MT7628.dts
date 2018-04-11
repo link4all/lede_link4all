@@ -8,14 +8,58 @@
 
 	memory@0 {
 		device_type = "memory";
-		reg = <0x0 0x2000000>;
+		reg = <0x0 0x8000000>;
+	};
+	gpio-leds {
+		compatible = "gpio-leds";
+
+		4g1 {
+			label = "mt7628:red:4g1";
+			gpios = <&gpio1 10 1>;
+		};
+
+		4g2 {
+			label = "mt7628:red:4g2";
+			gpios = <&gpio1 9 1>;
+		};
+
+		4g3 {
+			label = "mt7628:red:4g3";
+			gpios = <&gpio1 8 1>;
+		};
+
+		4g4 {
+			label = "mt7628:red:4g4";
+			gpios = <&gpio1 7 1>;
+		};
+
+	};
+	gpio-keys-polled {
+		compatible = "gpio-keys-polled";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		poll-interval = <20>;
+		reset {
+			label = "reset";
+			gpios = <&gpio1 6 1>; //gpio38 wdt_rst
+			linux,code = <0x198>;
+			
+		};
 	};
 };
 
 &pinctrl {
 	state_default: pinctrl0 {
 		gpio {
-			ralink,group = "i2c", "jtag";
+			ralink,group = "jtag","refclk","perst","wdt","i2s","gpio","p1led_an","p2led_an","p3led_an","p4led_an";
+			ralink,function = "gpio";
+		};
+		wled_an {
+			ralink,group = "wled_an";
+			ralink,function = "wled_an";
+			};
+		i2c {
+			ralink,group = "i2c";
 			ralink,function = "gpio";
 		};
 	};
@@ -51,15 +95,27 @@
 		factory: partition@40000 {
 			label = "factory";
 			reg = <0x40000 0x10000>;
-			read-only;
+			//read-only;
 		};
 
 		partition@50000 {
 			label = "firmware";
-			reg = <0x50000 0x7b0000>;
+			reg = <0x50000 0xfb0000>;
 		};
 	};
 };
+	//&i2c {
+	//		status = "okay";
+	//	};
+	&uart1 {
+			status = "okay";
+		};
+	&i2s {
+			status = "okay";
+		};
+	&ethernet {
+		mtd-mac-address = <&factory 0x28>;
+	};
 
 &wmac {
 	status = "okay";

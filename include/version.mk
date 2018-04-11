@@ -84,7 +84,7 @@ define sed_escape
 $(subst &,\&,$(subst $(comma),\$(comma),$(subst ','\'',$(subst \,\\,$(1)))))
 endef
 #'
-
+BUILT_DATE := $(shell date +"%Y-%m-%d %H:%M:%S")
 VERSION_SED_SCRIPT:=$(SED) 's,%U,$(call sed_escape,$(VERSION_REPO)),g' \
 	-e 's,%V,$(call sed_escape,$(VERSION_NUMBER)),g' \
 	-e 's,%v,\L$(call sed_escape,$(subst $(space),_,$(VERSION_NUMBER))),g' \
@@ -102,5 +102,6 @@ VERSION_SED_SCRIPT:=$(SED) 's,%U,$(call sed_escape,$(VERSION_REPO)),g' \
 	-e 's,%b,$(call sed_escape,$(VERSION_BUG_URL)),g' \
 	-e 's,%s,$(call sed_escape,$(VERSION_SUPPORT_URL)),g' \
 	-e 's,%P,$(call sed_escape,$(VERSION_PRODUCT)),g' \
-	-e 's,%h,$(call sed_escape,$(VERSION_HWREV)),g'
+	-e 's,%h,$(call sed_escape,$(VERSION_HWREV)),g'\
+	-e 's,%B,$(BUILT_DATE),g'
 
