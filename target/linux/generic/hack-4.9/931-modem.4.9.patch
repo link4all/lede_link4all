@@ -16,7 +16,7 @@
  #define OPTION_VENDOR_ID			0x0AF0
  #define OPTION_PRODUCT_COLT			0x5000
  #define OPTION_PRODUCT_RICOLA			0x6000
-@@ -692,7 +701,45 @@
+@@ -692,7 +701,60 @@
  	.reserved = BIT(1) | BIT(4),
  };
  
@@ -30,7 +30,19 @@
 +};
 +//add end
 +
++//add zte zm8620
++static const struct option_blacklist_info zte_blacklist = {
++	.reserved = BIT(3) | BIT(4)  ,
++};
++//add end
++
  static const struct usb_device_id option_ids[] = {
++//add zm8620
++{ USB_DEVICE(0x19d2, 0x0396),
++.driver_info = (kernel_ulong_t)&zte_blacklist },
++//{ USB_DEVICE(0x19d2, 0x1432),
++//.driver_info = (kernel_ulong_t)&zte_blacklist },
++
 +//add nodecom nl660
 +	{ USB_DEVICE(NODECOM_VENDOR_ID, NODECOM_NL660_PRODUCT_ID),
 +	.driver_info = (kernel_ulong_t)&qc9x07_blacklist },
@@ -54,6 +66,9 @@
 +//add end
 +//add mu709s
 +	{ USB_DEVICE(0x12d1, 0x1c25) },
++//add fmt 9005
++	{ USB_DEVICE(0x05c6, 0x9005) },
++
 +//add forege 630b
 +	{ USB_DEVICE(0x05c6, 0x9025) },
 +//add forege 730
@@ -62,3 +77,4 @@
  	{ USB_DEVICE(OPTION_VENDOR_ID, OPTION_PRODUCT_COLT) },
  	{ USB_DEVICE(OPTION_VENDOR_ID, OPTION_PRODUCT_RICOLA) },
  	{ USB_DEVICE(OPTION_VENDOR_ID, OPTION_PRODUCT_RICOLA_LIGHT) },
+

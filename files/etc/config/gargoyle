@@ -1,0 +1,14 @@
+
+config global 'global'
+	option session_timeout '600'
+	option soft_ver 'V2.2.10'
+	option model_name 'LA-001'
+	option powerH '100'
+	option powerM '80'
+	option powerL '50'
+	option company_en_us 'ShenZhen XXXX Co., Ltd'
+	option company_zh_cn '深圳市XXXX有限公司'
+	option lang 'zh_cn'
+	option master '3g-wan1'
+	option mptcp '1'
+
