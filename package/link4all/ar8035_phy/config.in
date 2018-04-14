@@ -1,5 +1,0 @@
-if PACKAGE_kmod-ar8035
-config AR8035
-	tristate "Just a example"
-	default y
-endif
